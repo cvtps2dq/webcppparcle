@@ -40,3 +40,4 @@ export * from "./stdio";
 export * from "./string";
 export * from "./ctype";
 export * from "./stdlib";
+export * from "./arduino"

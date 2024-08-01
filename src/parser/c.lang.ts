@@ -849,7 +849,7 @@ SingleIdentifier
     } {
         return id;
     }
-    / 'operator' ope:OverloadOperator {
+    / 'operator' _ ope:OverloadOperator {
         return new AST.SingleIdentifier(getLocation(), "#" + ope, AST.IDType.ID, []);
     }
     / '~' name:TypeIdentifier {
@@ -1231,8 +1231,14 @@ TemplateArgument
 
 ExplicitInstantiation
     = FunctionTemplateInstantiation
+    / ClassTemplateInstantiation
 
 FunctionTemplateInstantiation
     = 'template' _ specifiers:DeclarationSpecifiers _ declarator:Declarator _ ';'{
         return new AST.FunctionTemplateInstantiation(getLocation(), specifiers, declarator);
+    }
+
+ClassTemplateInstantiation
+    = 'template' _ spec:ClassSpecifier _ ';'{
+        return new AST.ClassTemplateInstantiation(getLocation(), spec);
     }`        
